@@ -64,3 +64,18 @@ aws configure
 * Comando para la Imagen de configuracion
 `terraform graph | dot -Tsvg > base2.svg`
 
+
+### Enviroments Variables
+export AWS_ACCESS_KEY_ID="access_key"
+export AWS_SECRET_ACCESS_KEY="secret_key"
+export AWS_REGION="region_name"
+
+### validar variables de entorno
+env
+
+### Eliminar archivos al volver a crear la configuracion de Terraform
+rm -rf .terraform
+rm terraform.tfstate
+rm terraform.tfstate.backup 
+rm .terraform.lock.hcl 
+

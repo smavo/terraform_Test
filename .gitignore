@@ -2,7 +2,7 @@
 .terraform/*
 
 ## csv keys
-terraform_user_accessKeys.csv
+user_terraform_accessKeys.csv
 
 ## Enviroments
 variables.tf
