@@ -79,3 +79,7 @@ rm terraform.tfstate
 rm terraform.tfstate.backup 
 rm .terraform.lock.hcl 
 
+### Ejecucion de Comando en secuencia
+terraform init && terraform validate && terraform plan 
+terraform graph > base3.dot && terraform graph | dot -Tsvg > base3.svg
+
