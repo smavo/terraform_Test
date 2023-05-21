@@ -19,3 +19,10 @@ output "ipv4_servidor_2" {
     value = aws_instance.servidor_smavo_II.public_ip
 }
 
+
+output "dns_load_balancer" {
+    description = "DNS Pública del load balancer"
+    value = "http://${aws_lb.albApplicacion.dns_name}"
+}
+
+
