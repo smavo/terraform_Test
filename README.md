@@ -1,12 +1,12 @@
 # Terraform
 
 ### Instalacion Terraform Ubuntu 
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+```wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 
 sudo apt update && sudo apt install terraform
-
+```
 
 ### Crear usuario terraform_user en aws
 * IAM / Users / Add Users / 
@@ -23,9 +23,10 @@ sudo apt update && sudo apt install terraform
 
 
 ### Instalacion CLI AWS en Ubuntu 
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+```curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
+```
 
 
 ### Configurar CLI AWS 
@@ -35,4 +36,31 @@ aws configure
 
 
 ### Validar Configuracion del CLI en Ubuntu
-aws sts get-caller-identity
+`aws sts get-caller-identity`
+
+
+## Comandos 
+* Inicializa la configuración de Terraform
+`terraform init`
+
+* Validacion de la configuracion
+`terraform validate`
+
+* Toma la configuracion para generar un plan de ejecución
+`terraform plan`
+
+* Ejecuta el plan de ejecucion y crea la infraestructura 
+`terraform apply` 
+
+* Elimina la infraestructura gestionada por Terraform
+`terraform destroy`
+
+* Instalar graphviz dot
+`sudo apt install graphviz`
+
+* Crear imagen de la configuracion de terrform
+`terraform graph > base2.dot`
+
+* Comando para la Imagen de configuracion
+`terraform graph | dot -Tsvg > base2.svg`
+
