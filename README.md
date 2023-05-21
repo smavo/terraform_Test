@@ -59,10 +59,10 @@ aws configure
 `sudo apt install graphviz`
 
 * Crear imagen de la configuracion de terrform
-`terraform graph > base2.dot`
+`terraform graph > base1.dot`
 
-* Comando para la Imagen de configuracion
-`terraform graph | dot -Tsvg > base2.svg`
+* Comando para crear la Imagen de configuracion en terraform
+`terraform graph | dot -Tsvg > base1.svg`
 
 
 ### Enviroments Variables

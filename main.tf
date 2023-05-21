@@ -21,7 +21,7 @@ data "aws_subnet" "az_b"{
 # Instancia EC2 - Primera Instancia
 resource "aws_instance" "servidor_smavo_I"{
     ami = var.ami
-    instance_type = "t2.micro"
+    instance_type = var.instanceType
     subnet_id = data.aws_subnet.az_b.id
     vpc_security_group_ids = [ aws_security_group.mi_sg.id ]
     tags = {
@@ -35,7 +35,7 @@ resource "aws_instance" "servidor_smavo_I"{
 # Instancia EC2 - Segunda Instancia
 resource "aws_instance" "servidor_smavo_II"{
     ami = var.ami
-    instance_type = "t2.micro"
+    instance_type = var.instanceType
     subnet_id = data.aws_subnet.az_c.id
     vpc_security_group_ids = [ aws_security_group.mi_sg.id ]
     tags = {
