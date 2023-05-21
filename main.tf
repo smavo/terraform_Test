@@ -58,3 +58,26 @@ resource "aws_security_group" "mi_sg" {
     protocol = "TCP"
   }
 }
+
+# Load Balancer publico para 2 instancias
+resource "aws_lb" "alb" {
+  load_balancer_type = "application"
+  name = "terraform-alb"
+  security_groups = [aws_security_group.alb_sg.id]
+  subnets = [data.aws_subnet.az_b.id, data.aws_subnet.az_c.id]
+}
+
+
+# Define un grupo de seguridad con acceso al puerto 80
+resource "aws_security_group" "alb_sg" {            
+  name = "alb_sg"
+  vpc_id = data.aws_vpc.default.id
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Acceso al puerto 8080 desde el exterior"
+    from_port = 80
+    to_port = 80
+    protocol = "TCP"
+  }
+}
+

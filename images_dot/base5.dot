@@ -1,0 +1,48 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_instance.servidor_smavo_I (expand)" [label = "aws_instance.servidor_smavo_I", shape = "box"]
+		"[root] aws_instance.servidor_smavo_II (expand)" [label = "aws_instance.servidor_smavo_II", shape = "box"]
+		"[root] aws_lb.alb (expand)" [label = "aws_lb.alb", shape = "box"]
+		"[root] aws_security_group.alb_sg (expand)" [label = "aws_security_group.alb_sg", shape = "box"]
+		"[root] aws_security_group.mi_sg (expand)" [label = "aws_security_group.mi_sg", shape = "box"]
+		"[root] data.aws_subnet.az_b (expand)" [label = "data.aws_subnet.az_b", shape = "box"]
+		"[root] data.aws_subnet.az_c (expand)" [label = "data.aws_subnet.az_c", shape = "box"]
+		"[root] data.aws_vpc.default (expand)" [label = "data.aws_vpc.default", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.ami" [label = "var.ami", shape = "note"]
+		"[root] var.instanceType" [label = "var.instanceType", shape = "note"]
+		"[root] var.region" [label = "var.region", shape = "note"]
+		"[root] aws_instance.servidor_smavo_I (expand)" -> "[root] aws_security_group.mi_sg (expand)"
+		"[root] aws_instance.servidor_smavo_I (expand)" -> "[root] data.aws_subnet.az_b (expand)"
+		"[root] aws_instance.servidor_smavo_I (expand)" -> "[root] var.ami"
+		"[root] aws_instance.servidor_smavo_I (expand)" -> "[root] var.instanceType"
+		"[root] aws_instance.servidor_smavo_II (expand)" -> "[root] aws_security_group.mi_sg (expand)"
+		"[root] aws_instance.servidor_smavo_II (expand)" -> "[root] data.aws_subnet.az_c (expand)"
+		"[root] aws_instance.servidor_smavo_II (expand)" -> "[root] var.ami"
+		"[root] aws_instance.servidor_smavo_II (expand)" -> "[root] var.instanceType"
+		"[root] aws_lb.alb (expand)" -> "[root] aws_security_group.alb_sg (expand)"
+		"[root] aws_lb.alb (expand)" -> "[root] data.aws_subnet.az_b (expand)"
+		"[root] aws_lb.alb (expand)" -> "[root] data.aws_subnet.az_c (expand)"
+		"[root] aws_security_group.alb_sg (expand)" -> "[root] data.aws_vpc.default (expand)"
+		"[root] aws_security_group.mi_sg (expand)" -> "[root] data.aws_vpc.default (expand)"
+		"[root] data.aws_subnet.az_b (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_subnet.az_c (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_vpc.default (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] output.dns_publica_server_1 (expand)" -> "[root] aws_instance.servidor_smavo_I (expand)"
+		"[root] output.dns_publica_server_2 (expand)" -> "[root] aws_instance.servidor_smavo_II (expand)"
+		"[root] output.ipv4_servidor_1 (expand)" -> "[root] aws_instance.servidor_smavo_I (expand)"
+		"[root] output.ipv4_servidor_2 (expand)" -> "[root] aws_instance.servidor_smavo_II (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.servidor_smavo_I (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.servidor_smavo_II (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_lb.alb (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.region"
+		"[root] root" -> "[root] output.dns_publica_server_1 (expand)"
+		"[root] root" -> "[root] output.dns_publica_server_2 (expand)"
+		"[root] root" -> "[root] output.ipv4_servidor_1 (expand)"
+		"[root] root" -> "[root] output.ipv4_servidor_2 (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
