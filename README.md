@@ -49,7 +49,7 @@ aws configure
 * Toma la configuracion para generar un plan de ejecución
 `terraform plan`
 
-* Ejecuta el plan de ejecucion y crea la infraestructura 
+* Ejecuta los cambios necesarios definidos en el archico de configuración y crea la infraestructura 
 `terraform apply` 
 
 * Elimina la infraestructura gestionada por Terraform
