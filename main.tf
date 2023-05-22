@@ -80,12 +80,12 @@ resource "aws_lb" "albApplicacion" {
 # --------------------------
 # Define un grupo de seguridad con acceso al puerto 80
 resource "aws_security_group" "alb_sg" {            
-  name = "alb_sg"
+  name = "alb_security_group"
   vpc_id = data.aws_vpc.default.id
   
   ingress {
     cidr_blocks = ["0.0.0.0/0"]
-    description = "Acceso al puerto 8080 desde el exterior"
+    description = "Acceso al puerto 80 desde el exterior"
     from_port = 80
     to_port = 80
     protocol = "TCP"
@@ -140,7 +140,7 @@ resource "aws_lb_target_group_attachment" "server_2" {
 resource "aws_lb_listener" "listenerThis" {
   load_balancer_arn = aws_lb.albApplicacion.arn
   port = 80
-  protocol = "HTTP"
+  # protocol = "HTTP"
 
   default_action {
     target_group_arn = aws_lb_target_group.targetThis.arn
