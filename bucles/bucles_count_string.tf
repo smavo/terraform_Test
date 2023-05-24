@@ -1,9 +1,9 @@
 # -------------------------
 # Define el provider de AWS
 # -------------------------
-provider "aws" {
+/* provider "aws" {
   region = "us-west-1"
-}
+} */
 
 # ---------------------------------
 # Define número de usuarios a crear
@@ -26,10 +26,11 @@ resource "aws_iam_user" "user_1" {
 
 
 # Outputs de Salida
-output "arn_usuarios_1" {
+output "arn_usuario_1" {
   value = aws_iam_user.user_1[1].arn
 }
 
-output "arn_todos_usuarios" {
-  value = [for usuario in aws_iam_user.user_1 : usuario.arn]
+output "arn_todos_usuarios_1" {
+  # value = [for usuario in aws_iam_user.user_1 : usuario.arn]
+  value = aws_iam_user.user_1[*].name
 }

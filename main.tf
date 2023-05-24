@@ -1,7 +1,7 @@
 # --------------------------
 # Define el provider de aws
 provider "aws" {
-  region = var.region
+  region = local.region
 }
 
 # --------------------------
@@ -13,19 +13,19 @@ data "aws_vpc" "default" {
 # --------------------------
 # Data Source obtiene el ID del AZ 1
 data "aws_subnet" "az_c"{
-  availability_zone = "us-east-1c"
+  availability_zone = "${local.region}c"
 }
 
 # --------------------------
 # Data Source obtiene el ID del AZ 2
 data "aws_subnet" "az_b"{
-  availability_zone = "us-east-1b"
+  availability_zone = "${local.region}b"
 }
 
 # --------------------------
 # Instancia EC2 - Primera Instancia
 resource "aws_instance" "servidor_smavo_I"{
-    ami = var.ubuntu_ami["us-east-1"]
+    ami = local.ami
     instance_type = var.instanceType
     subnet_id = data.aws_subnet.az_b.id
     vpc_security_group_ids = [ aws_security_group.mi_sg.id ]

@@ -19,14 +19,14 @@ resource "aws_iam_user" "user_3" {
 
 
 # Output de Salida
-output "arn_usuario" {
+output "arn_usuario_3" {
   value = aws_iam_user.user_3["Martin"].arn
 }
 
-output "nombre_a_arn" {
+output "nombre_a_arn_3" {
   value = { for usuario in aws_iam_user.user_3 : usuario.name => usuario.arn }
 }
 
-output "nombres_usuarios" {
+output "nombres_usuarios_3" {
   value = [for usuario in aws_iam_user.user_3 : usuario.name]
 }

@@ -1,9 +1,9 @@
 # -------------------------
 # Define el provider de AWS
 # -------------------------
-provider "aws" {
+/* provider "aws" {
   region = "eu-west-1"
-} 
+}  */
 
 variable "usuarios_2" {
   description = "Nombre de usuarios IAM"
@@ -21,10 +21,11 @@ resource "aws_iam_user" "usuarios_2" {
 }
 
 # Outputs de Salida
-output "arn_usuarios_2" {
+output "arn_usuario_2" {
   value = aws_iam_user.usuarios_2[2].arn
 }
 
-output "arn_todos_usuarios" {
-  value = [for usuario in aws_iam_user.usuarios_2 : usuario.arn]
+output "arn_todos_usuarios_2" {
+  # value = [for usuario in aws_iam_user.usuarios_2 : usuario.arn]
+  value = aws_iam_user.usuarios_2[*].arn
 }
