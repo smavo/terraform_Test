@@ -1,7 +1,7 @@
 # -------------------------
 # Define el provider de AWS
 # -------------------------
-/* provider "aws" {
+provider "aws" {
   region = "us-west-1"
 }
 
@@ -32,4 +32,4 @@ output "arn_usuarios_1" {
 
 output "arn_todos_usuarios" {
   value = [for usuario in aws_iam_user.user_1 : usuario.arn]
-} */
+}
