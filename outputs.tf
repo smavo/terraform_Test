@@ -22,7 +22,7 @@ output "ipv4_servidor_2" {
 
 output "dns_load_balancer" {
     description = "DNS Pública del load balancer"
-    value = "http://${aws_lb.albApplicacion.dns_name}::${var.puerto_lb}"
+    value = "http://${aws_lb.albApplicacion.dns_name}:${var.puerto_lb}"
 }
 
 

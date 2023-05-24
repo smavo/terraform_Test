@@ -34,7 +34,7 @@ resource "aws_instance" "servidor_smavo_I"{
       Enviroment = "Desarrollo A"
       Manager = "Terraform"
     }
-    user_data = "${file("user-data-apache.sh")}"
+    user_data = "${file("user-data-apache_1.sh")}"
 }
 
 # --------------------------
@@ -49,7 +49,7 @@ resource "aws_instance" "servidor_smavo_II"{
       Enviroment = "Desarrollo B"
       Manager = "Terraform"
     }
-    user_data = "${file("user-data-apache.sh")}"
+    user_data = "${file("user-data-apache_2.sh")}"
 }
 
 # --------------------------
