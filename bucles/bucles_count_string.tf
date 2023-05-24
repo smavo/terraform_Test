@@ -1,7 +1,7 @@
 # -------------------------
 # Define el provider de AWS
 # -------------------------
-provider "aws" {
+/* provider "aws" {
   region = "us-west-1"
 }
 
@@ -18,7 +18,7 @@ variable "usuarios_1" {
 # ---------------------------------
 # Crea un <var.usuarios> de IAM
 # ---------------------------------
-resource "aws_iam_user" "user_2" {
+resource "aws_iam_user" "user_1" {
   count = length(var.usuarios_1)
 
   name = "user-string-${var.usuarios_1[count.index]}"
@@ -26,10 +26,10 @@ resource "aws_iam_user" "user_2" {
 
 
 # Outputs de Salida
-output "arn_usuarios_2" {
-  value = aws_iam_user.user_2[1].arn
+output "arn_usuarios_1" {
+  value = aws_iam_user.user_1[1].arn
 }
 
 output "arn_todos_usuarios" {
-  value = [for usuario in aws_iam_user.user_2 : usuario.arn]
-}
+  value = [for usuario in aws_iam_user.user_1 : usuario.arn]
+} */
