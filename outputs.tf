@@ -1,6 +1,6 @@
 output "dns_publica_server_1" {
     description = "DNS Publica del servidor 1"
-    value = "http://${aws_instance.servidor_smavo_I.public_dns}:8080"
+    value = "http://${aws_instance.servidor_smavo_I.public_dns}:${var.puerto_servidor}"
 }
 
 output "ipv4_servidor_1" {
@@ -11,7 +11,7 @@ output "ipv4_servidor_1" {
 
 output "dns_publica_server_2" {
     description = "DNS Publica del servidor 2"
-    value = "http://${aws_instance.servidor_smavo_II.public_dns}:8080"
+    value = "http://${aws_instance.servidor_smavo_II.public_dns}:${var.puerto_servidor}"
 }
 
 output "ipv4_servidor_2" {
@@ -22,7 +22,7 @@ output "ipv4_servidor_2" {
 
 output "dns_load_balancer" {
     description = "DNS Pública del load balancer"
-    value = "http://${aws_lb.albApplicacion.dns_name}"
+    value = "http://${aws_lb.albApplicacion.dns_name}::${var.puerto_lb}"
 }
 
 

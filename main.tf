@@ -25,7 +25,7 @@ data "aws_subnet" "az_b"{
 # --------------------------
 # Instancia EC2 - Primera Instancia
 resource "aws_instance" "servidor_smavo_I"{
-    ami = var.ami
+    ami = var.ubuntu_ami["us-east-1"]
     instance_type = var.instanceType
     subnet_id = data.aws_subnet.az_b.id
     vpc_security_group_ids = [ aws_security_group.mi_sg.id ]
@@ -40,7 +40,7 @@ resource "aws_instance" "servidor_smavo_I"{
 # --------------------------
 # Instancia EC2 - Segunda Instancia
 resource "aws_instance" "servidor_smavo_II"{
-    ami = var.ami
+    ami = var.ubuntu_ami["us-east-1"]
     instance_type = var.instanceType
     subnet_id = data.aws_subnet.az_c.id
     vpc_security_group_ids = [ aws_security_group.mi_sg.id ]
@@ -62,8 +62,8 @@ resource "aws_security_group" "mi_sg" {
     # cidr_blocks = ["0.0.0.0/0"]
     security_groups = [aws_security_group.alb_sg.id]
     description = "Acceso al puerto 8080 desde el exterior"
-    from_port = 8080
-    to_port = 8080
+    from_port = var.puerto_servidor
+    to_port = var.puerto_servidor
     protocol = "TCP"
   }
 }
@@ -86,16 +86,16 @@ resource "aws_security_group" "alb_sg" {
   ingress {
     cidr_blocks = ["0.0.0.0/0"]
     description = "Acceso al puerto 80 desde el exterior"
-    from_port = 80
-    to_port = 80
+    from_port = var.puerto_lb
+    to_port = var.puerto_lb
     protocol = "TCP"
   }
 
   egress {
     cidr_blocks = ["0.0.0.0/0"]
     description = "Acceso al puerto 8080 desde el exterior"
-    from_port = 8080
-    to_port = 8080
+    from_port = var.puerto_servidor
+    to_port = var.puerto_servidor
     protocol = "TCP"
   }
 
@@ -105,7 +105,7 @@ resource "aws_security_group" "alb_sg" {
 # Target Group para el Load Balancer
 resource "aws_lb_target_group" "targetThis" {
   name = "terraform-alb-targetGroup"
-  port = 80
+  port = var.puerto_lb
   vpc_id = data.aws_vpc.default.id
   protocol = "HTTP"
 
@@ -124,7 +124,7 @@ resource "aws_lb_target_group" "targetThis" {
 resource "aws_lb_target_group_attachment" "server_1" {
   target_group_arn = aws_lb_target_group.targetThis.arn
   target_id = aws_instance.servidor_smavo_I.id
-  port = 8080
+  port = var.puerto_servidor
 }
 
 # --------------------------
@@ -132,14 +132,14 @@ resource "aws_lb_target_group_attachment" "server_1" {
 resource "aws_lb_target_group_attachment" "server_2" {
   target_group_arn = aws_lb_target_group.targetThis.arn
   target_id = aws_instance.servidor_smavo_II.id
-  port = 8080
+  port = var.puerto_servidor
 }
 
 # --------------------------
 # Listener para el LB
 resource "aws_lb_listener" "listenerThis" {
   load_balancer_arn = aws_lb.albApplicacion.arn
-  port = 80
+  port = var.puerto_lb
   # protocol = "HTTP"
 
   default_action {
