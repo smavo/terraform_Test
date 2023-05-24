@@ -1,10 +1,13 @@
 # Terraform
 
 ### Instalacion Terraform Ubuntu 
-```wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-
+```
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+```
+```
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-
+```
+```
 sudo apt update && sudo apt install terraform
 ```
 
@@ -23,61 +26,92 @@ sudo apt update && sudo apt install terraform
 
 
 ### Instalacion CLI AWS en Ubuntu 
-```curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+```
+```
 unzip awscliv2.zip
+```
+```
 sudo ./aws/install
 ```
 
 
 ### Configurar CLI AWS 
+```
 aws configure
+```
 
 * Te pedira ingresar el usuario y la clave (estos estan en el archivo.csv que descargaste)
 
 
 ### Validar Configuracion del CLI en Ubuntu
-`aws sts get-caller-identity`
+```
+aws sts get-caller-identity
+```
 
 
 ## Comandos 
 * Inicializa la configuración de Terraform
-`terraform init`
+```
+terraform init
+```
 
 * Validacion de la configuracion
-`terraform validate`
+```
+terraform validate
+```
 
 * Toma la configuracion para generar un plan de ejecución
-`terraform plan`
+```
+terraform plan
+```
 
 * Ejecuta los cambios necesarios definidos en el archico de configuración y crea la infraestructura 
-`terraform apply` 
+```
+terraform apply
+``` 
 
 * Elimina la infraestructura gestionada por Terraform
-`terraform destroy`
+```
+terraform destroy
+```
 
 * Instalar graphviz dot
-`sudo apt install graphviz`
+```
+sudo apt install graphviz
+```
 
 * Crear imagen de la configuracion de terrform
-`terraform graph > base1.dot`
+```
+terraform graph > base1.dot
+```
 
 * Comando para crear la Imagen de configuracion en terraform
-`terraform graph | dot -Tsvg > base1.svg`
+```
+terraform graph | dot -Tsvg > base1.svg
+```
 
 
 ### Enviroments Variables
+```
 export AWS_ACCESS_KEY_ID="access_key"
 export AWS_SECRET_ACCESS_KEY="secret_key"
 export AWS_REGION="region_name"
+```
 
 ### validar variables de entorno
+```
 env
+```
 
 ### Eliminar archivos al volver a crear la configuracion de Terraform
+```
 rm -rf .terraform
 rm terraform.tfstate
 rm terraform.tfstate.backup 
 rm .terraform.lock.hcl 
+```
 
 ### Ejecucion de Comando en secuencia
 ```
