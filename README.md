@@ -118,5 +118,5 @@ rm .terraform.lock.hcl
 terraform init && terraform validate && terraform plan
 ```
 ``` 
-terraform graph > base1.dot && terraform graph | dot -Tsvg > base1.svg
+terraform graph > base9.dot && terraform graph | dot -Tsvg > base9.svg
 ```
