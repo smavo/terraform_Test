@@ -29,3 +29,9 @@ variable "servidores" {
     })
   )
 }
+
+variable "entorno" {
+  description = "Entorno en el que estamos trabajando"
+  type = string
+  default = ""
+}

@@ -117,6 +117,15 @@ rm .terraform.lock.hcl
 ```
 terraform init && terraform validate && terraform plan
 ```
+
+#### Creacion de grafico 
 ``` 
 terraform graph > base9.dot && terraform graph | dot -Tsvg > base9.svg
+``` 
+``` 
+terraform graph > dev.dot && terraform graph | dot -Tsvg -Nfontcolor=blue -Nshape=rect -Glabel="Modulacion de Infraestructura" -Ecolor=green -Earrowhead=diamond > dev.svg
 ```
+
+### EJecucion a nivel de entornos (dev,prod)
+cd env/dev --> terraform init && terraform validate && terraform plan  --> terraform apply
+cd env/prod --> terraform init && terraform validate && terraform plan --> terraform apply

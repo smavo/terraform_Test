@@ -24,3 +24,9 @@ variable "puerto_servidor" {
     error_message = "El valor del puerto debe estar comprendido entre 1 y 65536."
   }
 }
+
+variable "entorno" {
+  description = "Entorno en el que estamos trabajando"
+  type = string
+  default = ""
+}

@@ -3,7 +3,7 @@
 # ----------------------------------------
 resource "aws_lb" "alb" {
   load_balancer_type = "application"
-  name               = "terraformers-alb"
+  name               = "terraformers-alb-${var.entorno}"
   security_groups    = [aws_security_group.alb.id]
 
   subnets = var.subnet_ids
@@ -13,7 +13,7 @@ resource "aws_lb" "alb" {
 # Security group para el Load Balancer
 # ------------------------------------
 resource "aws_security_group" "alb" {
-  name = "alb-sg"
+  name = "alb-sg-${var.entorno}"
 
   ingress {
     cidr_blocks = ["0.0.0.0/0"]
@@ -43,7 +43,7 @@ data "aws_vpc" "default" {
 # Target Group para el Load Balancer
 # ----------------------------------
 resource "aws_lb_target_group" "this" {
-  name     = "terraformers-alb-target-group"
+  name     = "terraformers-alb-tg-${var.entorno}"
   port     = var.puerto_lb
   vpc_id   = data.aws_vpc.default.id
   protocol = "HTTP"

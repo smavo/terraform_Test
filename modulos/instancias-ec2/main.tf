@@ -29,7 +29,7 @@ resource "aws_instance" "servidor" {
 # Define un grupo de seguridad con acceso al puerto 8080
 # ------------------------------------------------------
 resource "aws_security_group" "mi_grupo_de_seguridad" {
-  name = "primer-servidor-sg"
+  name = "servidor-sg-${var.entorno}"
 
   ingress {
     description = "Acceso al puerto del servidor desde el LB"
